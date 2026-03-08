@@ -1,0 +1,6 @@
+__pycache__
+.env
+*.egg-info
+cdk.out
+agent_files/deployment_package
+agent_files/deployment_package.zip

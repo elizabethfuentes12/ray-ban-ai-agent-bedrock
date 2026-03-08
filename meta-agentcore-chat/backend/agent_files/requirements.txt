@@ -1,0 +1,8 @@
+strands-agents[openai,anthropic]
+strands-agents-tools
+bedrock-agentcore
+boto3
+playwright
+nest-asyncio
+PyGithub
+cinemagoer
