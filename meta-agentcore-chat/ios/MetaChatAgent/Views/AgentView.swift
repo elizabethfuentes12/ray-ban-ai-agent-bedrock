@@ -136,6 +136,10 @@ struct AgentView: View {
         } catch let error as ChatError {
             messages.append(ChatMessage(text: error.errorDescription ?? "", isUser: false))
             await speechService.speak(error.spokenMessage)
+            // 401/403 means session is invalid — sign out so user can re-authenticate
+            if error.requiresSignOut {
+                auth.signOut()
+            }
         } catch {
             let msg = "Something went wrong. Please try again."
             messages.append(ChatMessage(text: msg, isUser: false))

@@ -115,11 +115,29 @@ class CognitoAuthService: ObservableObject {
     }
 
     func restoreSession() {
+        // If a token exists but is from a different User Pool, clear it immediately
+        if let token = Keychain.read(key: "idToken"), !isTokenFromCurrentPool(token) {
+            signOut()
+            return
+        }
         if let token = Keychain.read(key: "idToken"), !isTokenExpired(token) {
             isAuthenticated = true
         } else if Keychain.read(key: "refreshToken") != nil {
             isAuthenticated = true  // Will refresh lazily on next API call
         }
+    }
+
+    /// Returns true if the token was issued by the currently configured Cognito User Pool.
+    /// The JWT `iss` claim is: https://cognito-idp.{region}.amazonaws.com/{userPoolId}
+    private func isTokenFromCurrentPool(_ token: String) -> Bool {
+        let parts = token.split(separator: ".")
+        guard parts.count == 3,
+              let payloadData = Data(base64Encoded: String(parts[1]).paddedBase64),
+              let payload = try? JSONSerialization.jsonObject(with: payloadData) as? [String: Any],
+              let iss = payload["iss"] as? String else {
+            return false
+        }
+        return iss.hasSuffix(AppConfig.userPoolId)
     }
 
     // MARK: - Private

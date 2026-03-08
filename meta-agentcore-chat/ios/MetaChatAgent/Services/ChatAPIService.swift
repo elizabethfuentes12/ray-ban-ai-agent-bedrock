@@ -73,6 +73,14 @@ enum ChatError: LocalizedError {
         }
     }
 
+    /// True if the error means the session is invalid and the user must re-authenticate
+    var requiresSignOut: Bool {
+        switch self {
+        case .unauthorized, .forbidden: return true
+        default: return false
+        }
+    }
+
     /// Short version for TTS — spoken through the glasses
     var spokenMessage: String {
         switch self {
