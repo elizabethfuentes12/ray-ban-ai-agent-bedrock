@@ -5,7 +5,7 @@
 [![Strands](https://img.shields.io/badge/Strands_Agents-blue.svg?style=for-the-badge)](https://strandsagents.com)
 [![AgentCore](https://img.shields.io/badge/Amazon-Bedrock_AgentCore-orange.svg?style=for-the-badge&logo=amazon-aws)](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
 
-Conversational AI assistant powered by [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html) with Meta Ray-Ban smart glasses integration. Say a wake word, ask anything, hear the answer through the glasses speakers — hands-free.
+Conversational AI assistant powered by [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) with Meta Ray-Ban smart glasses integration. Say a wake word, ask anything, hear the answer through the glasses speakers — hands-free.
 
 ---
 
@@ -44,7 +44,7 @@ If you say "Hey Penelope" and stay silent for 6 seconds, the agent returns to li
 | `search_imdb` | Movie and TV show ratings, cast, director, plot from IMDb |
 | `search_github_repos` | Find GitHub repositories by topic, language, or keyword |
 | `search_github_code` | Find code examples on GitHub |
-| `save_to_obsidian` | Save ideas as structured Markdown notes to an [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/)-backed Obsidian vault |
+| `save_to_obsidian` | Save ideas as structured Markdown notes to an [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)-backed Obsidian vault |
 | `calculator` | Math and unit conversions |
 | `current_time` | Current date and time |
 | `think` | Complex reasoning before answering |
@@ -55,13 +55,13 @@ If you say "Hey Penelope" and stay silent for 6 seconds, the agent returns to li
 
 ## Memory Architecture — STM and LTM
 
-The agent uses two layers of memory following best practices for conversational AI. See: [Add memory to your AgentCore agent](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html)
+The agent uses two layers of memory following best practices for conversational AI. See: [Add memory to your AgentCore agent](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
 
 ### Short-Term Memory (STM) — Conversation Context
 
 **What it is:** The context of the current conversation — what was said in THIS session.
 
-**How it works:** Managed by the [AgentCore Runtime `runtimeSessionId`](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html). All messages sharing the same `sessionId` maintain conversation context. When you ask a follow-up question, the agent knows what was discussed before.
+**How it works:** Managed by the [AgentCore Runtime `runtimeSessionId`](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el). All messages sharing the same `sessionId` maintain conversation context. When you ask a follow-up question, the agent knows what was discussed before.
 
 **Lifecycle:**
 - A new UUID is generated each time `AgentView` appears (glasses connect)
@@ -79,7 +79,7 @@ Glasses reconnect → new UUID → fresh conversation
 
 **Where the value comes from:** Generated in `AgentView.swift` as `UUID().uuidString` at view initialization. Sent to the Lambda in the request body as `session_id`. The Lambda prefixes it: `ioschat-{userId[:8]}-{uuid}` for traceability.
 
-> See: [Use isolated sessions for agents](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html)
+> See: [Use isolated sessions for agents](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
 
 ---
 
@@ -87,7 +87,7 @@ Glasses reconnect → new UUID → fresh conversation
 
 **What it is:** Facts and preferences about the user that persist across all sessions indefinitely.
 
-**How it works:** Powered by [AgentCore Memory Store](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html), keyed by the user's `actorId`. The agent automatically reads relevant memories at the start of each session and writes new ones at the end — no explicit user action required.
+**How it works:** Powered by [AgentCore Memory Store](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), keyed by the user's `actorId`. The agent automatically reads relevant memories at the start of each session and writes new ones at the end — no explicit user action required.
 
 | Memory Type | Namespace | What it stores |
 |-------------|-----------|----------------|
@@ -116,7 +116,7 @@ aws cognito-idp get-user \
   --output text
 ```
 
-> See: [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html) · [Cognito User Attributes](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html)
+> See: [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) · [Cognito User Attributes](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
 
 ---
 
@@ -131,10 +131,10 @@ aws cognito-idp get-user \
 
 ## Security
 
-- **Authentication**: [Amazon Cognito](https://aws.amazon.com/cognito/) User Pool — email + password, verified via email code
+- **Authentication**: [Amazon Cognito](https://aws.amazon.com/cognito/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) User Pool — email + password, verified via email code
 - **Tokens**: IdToken valid 24 hours, RefreshToken valid 10 years — session never expires in normal use
 - **Token storage**: iOS [Keychain](https://developer.apple.com/documentation/security/keychain_services)
-- **API secrets**: [AWS Systems Manager (SSM) Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) SecureString — never in CloudFormation or code
+- **API secrets**: [AWS Systems Manager (SSM) Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) SecureString — never in CloudFormation or code
 - **API**: protected by Amazon Cognito Authorizer — no unauthenticated requests reach the backend
 
 ---
@@ -161,7 +161,7 @@ python update_ios_config.py --skip-deploy -c openai_api_key="sk-..."
 
 | Component | Path | Description |
 |-----------|------|-------------|
-| **Backend** | `backend/` | [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) stack: [Amazon API Gateway](https://aws.amazon.com/api-gateway/) + [AWS Lambda](https://aws.amazon.com/lambda/) + AgentCore Runtime + Amazon Cognito + [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) + Memory |
+| **Backend** | `backend/` | [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) stack: [Amazon API Gateway](https://aws.amazon.com/api-gateway/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) + [AWS Lambda](https://aws.amazon.com/lambda/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) + AgentCore Runtime + Amazon Cognito + [Amazon DynamoDB](https://aws.amazon.com/dynamodb/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) + Memory |
 | **iOS App** | `ios/` | SwiftUI app with Meta Glasses integration, Cognito auth, voice commands |
 | **Agent** | `backend/agent_files/chat_agent.py` | Strands agent with 10 tools, LTM, multi-model support |
 | **Memory** | `backend/memory/` | AgentCore Memory Store: semantic facts + user preferences (90-day retention) |
@@ -174,7 +174,7 @@ python update_ios_config.py --skip-deploy -c openai_api_key="sk-..."
 ### Prerequisites
 
 - AWS CLI configured with appropriate permissions
-- Python 3.10+ and [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) installed
+- Python 3.10+ and [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) installed
 - Xcode 15+ on a Mac
 - iPhone with iOS 17+ and USB cable
 - Meta Ray-Ban glasses paired with Meta AI app
@@ -315,9 +315,9 @@ The agent saves ideas directly to your Obsidian vault stored in S3. The agent's 
 python update_ios_config.py -c obsidian_bucket="your-bucket-name" ...
 ```
 
-**Cross-account bucket** — create an [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/) role in the bucket's account with:
+**Cross-account bucket** — create an [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) role in the bucket's account with:
 
-*Trust policy* (use ExternalId to prevent [confused deputy attacks](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)):
+*Trust policy* (use ExternalId to prevent [confused deputy attacks](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)):
 ```json
 {
   "Statement": [{
@@ -426,11 +426,11 @@ curl -X POST "<ApiUrl>/chat" \
 
 ## References
 
-- [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
-- [AgentCore Runtime Sessions](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html)
-- [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html)
-- [AgentCore Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html)
-- [AgentCore Built-in Tools](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/built-in-tools.html)
+- [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
+- [AgentCore Runtime Sessions](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
+- [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
+- [AgentCore Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
+- [AgentCore Built-in Tools](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/built-in-tools.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
 - [Strands Agents Framework](https://strandsagents.com)
 - [Strands Tools](https://strandsagents.com/latest/documentation/docs/user-guide/concepts/tools/community-tools/)
 - [Tavily API](https://tavily.com)
