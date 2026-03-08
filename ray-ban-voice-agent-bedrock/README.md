@@ -1,4 +1,4 @@
-# Meta AgentCore Chat
+# Hands-Free AI Voice Agent for Meta Ray-Ban Glasses — Amazon Bedrock AgentCore
 
 [![AWS CDK](https://img.shields.io/badge/AWS_CDK-2.241.0-orange.svg?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/cdk/)
 [![Swift](https://img.shields.io/badge/Swift-5.9-FA7343.svg?style=for-the-badge&logo=swift)](https://swift.org)
@@ -6,6 +6,14 @@
 [![AgentCore](https://img.shields.io/badge/Amazon-Bedrock_AgentCore-orange.svg?style=for-the-badge&logo=amazon-aws)](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
 
 Conversational AI assistant powered by [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) with Meta Ray-Ban smart glasses integration. Say a wake word, ask anything, hear the answer through the glasses speakers — hands-free.
+
+<p align="center">
+  <img src="backend/imagen/ray-ban-ai-agent-ios-app-icon.jpeg" alt="Ray-Ban AI Agent iOS app icon" width="120"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="backend/imagen/ray-ban-voice-agent-wake-word-imdb-query.jpeg" alt="Ray-Ban voice agent listening for wake word Hey Penelope and answering IMDb query" width="220"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="backend/imagen/ray-ban-ai-agent-cognito-signin-ios.jpeg" alt="Ray-Ban AI agent iOS sign-in screen powered by Amazon Cognito" width="220"/>
+</p>
 
 ---
 
@@ -232,6 +240,16 @@ Note the `UniversalLinkDomain` output — you need it in Step 3:
 5. **Release Channels** → create a channel → add yourself as tester
 6. Note your **Meta App ID** and **Client Token** — needed in Step 5
 
+<p align="center">
+  <img src="backend/imagen/meta-wearables-developer-center-app-configuration.png" alt="Meta Wearables Developer Center App Configuration — iOS Team ID, Bundle ID and Universal Link setup" width="700"/>
+  <br><em>App Configuration: iOS Team ID, Bundle ID, and Universal Link</em>
+</p>
+
+<p align="center">
+  <img src="backend/imagen/meta-wearables-developer-center-distribute-release.png" alt="Meta Wearables Developer Center Distribute tab — release channel setup for beta testing" width="700"/>
+  <br><em>Distribute: create a release channel and add yourself as tester</em>
+</p>
+
 See: [Meta project management guide](https://wearables.developer.meta.com/docs/manage-projects)
 
 ---
@@ -274,6 +292,11 @@ curl https://<UniversalLinkDomain>/prod/.well-known/apple-app-site-association
 | `TeamID` | Your Apple Team ID | Step 1 |
 | `AppLinkURLScheme` | `metachatagent://` | Already set |
 
+<p align="center">
+  <img src="backend/imagen/meta-wearables-developer-center-ios-plist-integration.png" alt="Meta Wearables Developer Center iOS Info.plist integration — MWDAT keys configuration" width="700"/>
+  <br><em>iOS integration: copy the MWDAT keys into your Info.plist</em>
+</p>
+
 ---
 
 ### Step 7: Add Meta SDK in Xcode
@@ -282,6 +305,11 @@ curl https://<UniversalLinkDomain>/prod/.well-known/apple-app-site-association
 2. **Package Dependencies** → **+** → `https://github.com/facebook/meta-wearables-dat-ios` → select **MWDATCore** and **MWDATCamera**
 3. **Signing & Capabilities** → Automatically manage signing → set Team and Bundle ID
 4. **+ Capability** → **Background Modes** → check **Audio, AirPlay, and Picture in Picture** (required for hands-free with screen off)
+
+<p align="center">
+  <img src="backend/imagen/xcode-ray-ban-agent-signing-capabilities.png" alt="Xcode Signing and Capabilities configuration for Ray-Ban Meta AI agent iOS app" width="700"/>
+  <br><em>Xcode: Signing & Capabilities — set your Team and Bundle Identifier</em>
+</p>
 
 ---
 
