@@ -4,3 +4,6 @@ __pycache__
 cdk.out
 agent_files/deployment_package
 agent_files/deployment_package.zip
+
+# Claude Code local settings — may contain AWS credentials
+.claude/
