@@ -1,6 +1,6 @@
 # Ray-Ban Meta AI Voice Agent — Amazon Bedrock AgentCore
 
-> **Disclaimer:** The iOS code in this project was built with the assistance of [Kiro](https://kiro.dev), an agentic AI IDE, to bridge a gap in Swift/iOS expertise. This is a demo project — it is not intended for production use.
+> ⚠️ **Disclaimer:** The iOS code in this project was built with the assistance of [Kiro](https://kiro.dev), an agentic AI IDE, to bridge a gap in Swift/iOS expertise. This is a demo project — it is not intended for production use.
 
 Hands-free AI assistant for [Meta Ray-Ban smart glasses](https://www.meta.com/smart-glasses/) powered by [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) and [Strands Agents](https://strandsagents.com). Say a wake word, ask anything — the agent responds through the glasses speakers.
 

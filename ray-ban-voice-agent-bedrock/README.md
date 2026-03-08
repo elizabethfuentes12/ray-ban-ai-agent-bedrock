@@ -5,7 +5,7 @@
 [![Strands](https://img.shields.io/badge/Strands_Agents-blue.svg?style=for-the-badge)](https://strandsagents.com)
 [![AgentCore](https://img.shields.io/badge/Amazon-Bedrock_AgentCore-orange.svg?style=for-the-badge&logo=amazon-aws)](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
 
-> **Disclaimer:** The iOS code in this project was built with the assistance of [Kiro](https://kiro.dev), an agentic AI IDE, to bridge a gap in Swift/iOS expertise. This is a demo project — it is not intended for production use.
+> ⚠️ **Disclaimer:** The iOS code in this project was built with the assistance of [Kiro](https://kiro.dev), an agentic AI IDE, to bridge a gap in Swift/iOS expertise. This is a demo project — it is not intended for production use.
 
 Conversational AI assistant powered by [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) with Meta Ray-Ban smart glasses integration. Say a wake word, ask anything, hear the answer through the glasses speakers — hands-free.
 
