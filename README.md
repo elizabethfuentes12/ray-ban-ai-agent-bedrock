@@ -46,7 +46,19 @@ The agent has access to web search, IMDb ratings, GitHub repository search, note
 
 ---
 
+## Memory Architecture
+
+The agent uses two layers of memory following STM/LTM principles:
+
+**Short-Term Memory (STM)** — conversation context within a session, powered by [Amazon Bedrock AgentCore Runtime isolated sessions](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el). A new session starts each time the glasses connect; all messages in that connection share context.
+
+**Long-Term Memory (LTM)** — user facts and preferences that persist across all sessions, powered by [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el). The agent learns your name, location, and preferences over time without any explicit action from you.
+
+---
+
 ## Agent Tools
+
+This app uses [Strands Agents](https://strandsagents.com), which makes it simple to extend the agent with new capabilities — just add a `@tool` function in Python. It comes with 10 built-in tools:
 
 | Tool | What it does |
 |------|-------------|
@@ -60,16 +72,6 @@ The agent has access to web search, IMDb ratings, GitHub repository search, note
 | `think` | Complex reasoning before answering |
 | `http_request` | Call public APIs directly |
 | `browser` | Navigate dynamic websites when needed |
-
----
-
-## Memory Architecture
-
-The agent uses two layers of memory following STM/LTM principles:
-
-**Short-Term Memory (STM)** — conversation context within a session, powered by [Amazon Bedrock AgentCore Runtime isolated sessions](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el). A new session starts each time the glasses connect; all messages in that connection share context.
-
-**Long-Term Memory (LTM)** — user facts and preferences that persist across all sessions, powered by [AgentCore Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el). The agent learns your name, location, and preferences over time without any explicit action from you.
 
 ---
 
@@ -87,7 +89,7 @@ The agent uses two layers of memory following STM/LTM principles:
 
 | Folder | Description |
 |--------|-------------|
-| `meta-agentcore-chat/backend/` | [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) stack — [Amazon API Gateway](https://aws.amazon.com/api-gateway/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), [AWS Lambda](https://aws.amazon.com/lambda/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), AgentCore Runtime, Amazon Cognito, [Amazon DynamoDB](https://aws.amazon.com/dynamodb/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), Memory |
+| `meta-agentcore-chat/backend/` | [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) stack — [Amazon API Gateway](https://aws.amazon.com/api-gateway/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), [AWS Lambda](https://aws.amazon.com/lambda/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), AgentCore Runtime, Amazon Cognito, Memory |
 | `meta-agentcore-chat/ios/` | SwiftUI iOS app — voice commands, wake word, Cognito auth |
 | `meta-agentcore-chat/backend/agent_files/` | Strands agent with tools |
 | `meta-agentcore-chat/update_ios_config.py` | One-command deploy and iOS config update |

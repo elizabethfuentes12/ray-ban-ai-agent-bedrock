@@ -77,23 +77,6 @@ flowchart LR
 
 ---
 
-## Agent Tools
-
-| Tool | What it does |
-|------|-------------|
-| `tavily` | Web search — current events, news, facts, any internet query |
-| `search_imdb` | Movie and TV show ratings, cast, director, plot from IMDb |
-| `search_github_repos` | Find GitHub repositories by topic, language, or keyword |
-| `search_github_code` | Find code examples on GitHub |
-| `save_to_obsidian` | Save ideas as structured Markdown notes to an [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)-backed Obsidian vault |
-| `calculator` | Math and unit conversions |
-| `current_time` | Current date and time |
-| `think` | Complex reasoning before answering |
-| `http_request` | Call public APIs directly |
-| `browser` | Navigate dynamic websites when needed |
-
----
-
 ## Memory Architecture — STM and LTM
 
 The agent uses two layers of memory following best practices for conversational AI. See: [Add memory to your AgentCore agent](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)
@@ -167,6 +150,25 @@ aws cognito-idp get-user \
 |-----------|-------|---------------------|---------|
 | `actorId` | `ioschat:{cognitoSub}` | Cognito JWT `sub` claim (stable UUID per user) | LTM identity — same across all sessions |
 | `runtimeSessionId` | `ioschat-{userId[:8]}-{uuid}` | UUID generated per `AgentView` instance in iOS | STM isolation — unique per conversation |
+
+---
+
+## Agent Tools
+
+This app uses [Strands Agents](https://strandsagents.com), which makes it simple to extend the agent with new capabilities — just add a `@tool` function in Python. It comes with 10 built-in tools:
+
+| Tool | What it does |
+|------|-------------|
+| `tavily` | Web search — current events, news, facts, any internet query |
+| `search_imdb` | Movie and TV show ratings, cast, director, plot from IMDb |
+| `search_github_repos` | Find GitHub repositories by topic, language, or keyword |
+| `search_github_code` | Find code examples on GitHub |
+| `save_to_obsidian` | Save ideas as structured Markdown notes to an [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)-backed Obsidian vault |
+| `calculator` | Math and unit conversions |
+| `current_time` | Current date and time |
+| `think` | Complex reasoning before answering |
+| `http_request` | Call public APIs directly |
+| `browser` | Navigate dynamic websites when needed |
 
 ---
 
