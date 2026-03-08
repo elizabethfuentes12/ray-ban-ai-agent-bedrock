@@ -144,3 +144,21 @@ Full setup guide: [meta-agentcore-chat/README.md](meta-agentcore-chat/README.md)
 - [Strands Agents Framework](https://strandsagents.com)
 - [Meta Wearables Developer Center](https://wearables.developer.meta.com/)
 - [Meta DAT iOS SDK](https://github.com/facebook/meta-wearables-dat-ios)
+
+---
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING](CONTRIBUTING.md) for more information.
+
+---
+
+## Security
+
+If you discover a potential security issue in this project, notify AWS/Amazon Security via the [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public GitHub issue.
+
+---
+
+## License
+
+This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file for details.
