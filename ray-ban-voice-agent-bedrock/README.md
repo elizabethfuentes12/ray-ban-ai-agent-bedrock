@@ -51,24 +51,9 @@ flowchart TD
 
 ## Voice Flow
 
-```mermaid
-flowchart LR
-    S1("🎤 Say<br/><b>Hey Penelope</b>")
-    S2("🟢 Glasses confirm<br/><b>Ready</b>")
-    S3("💬 Ask your<br/>question")
-    S4("🤖 Agent<br/>processes")
-    S5("🔊 Response through<br/>glasses speakers")
-    S6("🔁 Back to<br/>listening")
-
-    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S1
-
-    style S1 fill:#232f3e,stroke:#ff9900,color:#fff
-    style S2 fill:#1a4a2a,stroke:#2ecc71,color:#fff
-    style S3 fill:#1a3a5c,stroke:#4a9edc,color:#fff
-    style S4 fill:#3d1a5c,stroke:#9b59b6,color:#fff
-    style S5 fill:#1a3a5c,stroke:#4a9edc,color:#fff
-    style S6 fill:#232f3e,stroke:#ff9900,color:#fff
-```
+<p align="center">
+  <img src="backend/imagen/Ray-Ban-Meta-AI-Voice-Agent.png" alt="Ray-Ban Meta AI Voice Agent — hands-free voice flow: wake word, confirmation, question, agent response" width="700"/>
+</p>
 
 > 💡 Silent for 6 seconds after "Ready"? The agent returns to listening mode automatically. Works with the screen off — requires Background Audio capability in Xcode.
 

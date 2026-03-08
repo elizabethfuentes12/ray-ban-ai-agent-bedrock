@@ -23,24 +23,9 @@ Hands-free AI assistant for [Meta Ray-Ban smart glasses](https://www.meta.com/sm
 
 Voice-controlled AI agent that runs on Meta Ray-Ban glasses. The agent uses wake word detection, processes natural language queries, and speaks responses directly through the glasses speakers — no need to touch the phone.
 
-```mermaid
-flowchart LR
-    S1("🎤 Say<br/><b>Hey Penelope</b>")
-    S2("🟢 Glasses confirm<br/><b>Ready</b>")
-    S3("💬 Ask your<br/>question")
-    S4("🤖 Agent<br/>processes")
-    S5("🔊 Response through<br/>glasses speakers")
-    S6("🔁 Back to<br/>listening")
-
-    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S1
-
-    style S1 fill:#232f3e,stroke:#ff9900,color:#fff
-    style S2 fill:#1a4a2a,stroke:#2ecc71,color:#fff
-    style S3 fill:#1a3a5c,stroke:#4a9edc,color:#fff
-    style S4 fill:#3d1a5c,stroke:#9b59b6,color:#fff
-    style S5 fill:#1a3a5c,stroke:#4a9edc,color:#fff
-    style S6 fill:#232f3e,stroke:#ff9900,color:#fff
-```
+<p align="center">
+  <img src="ray-ban-voice-agent-bedrock/backend/imagen/Ray-Ban-Meta-AI-Voice-Agent.png" alt="Ray-Ban Meta AI Voice Agent — hands-free voice flow: wake word, confirmation, question, agent response" width="700"/>
+</p>
 
 The agent has access to web search, IMDb ratings, GitHub repository search, notes (Obsidian), and math. Supports [Amazon Bedrock](https://aws.amazon.com/bedrock/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el), [Anthropic](https://www.anthropic.com/), and [OpenAI](https://openai.com/) as model providers. Users authenticate via [Amazon Cognito](https://aws.amazon.com/cognito/?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) — the API is fully protected, no API keys stored on the device.
 
